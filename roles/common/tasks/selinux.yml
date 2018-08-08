@@ -1,0 +1,12 @@
+---
+- name: install python bindings for selinux
+  yum: name={{item}} state=latest
+  with_items:
+  - libselinux-python
+  - libsemanage-python
+
+- name: test to see if selinux is running
+  command: getenforce
+  register: sestatus
+  changed_when: false
+
